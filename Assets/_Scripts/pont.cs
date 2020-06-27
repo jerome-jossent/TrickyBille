@@ -14,11 +14,9 @@ public class pont : MonoBehaviour
     {
         valbrute = Input.GetAxis(InputAxe);
         val = coeff_degrees * (valbrute - 0.5f)*2;
-    }
-    private void FixedUpdate()
-    {
-        Morceau1.transform.localRotation = Quaternion.Euler(0, 0, val + 95);
-        Morceau2.transform.localRotation = Quaternion.Euler(0, 0, -val + 95);
-        Morceau3.transform.localRotation = Quaternion.Euler(0, 0, val + 95);
+
+        Morceau1.transform.localRotation = Quaternion.Euler(0, 0, val );
+        Morceau2.transform.localRotation = Quaternion.Euler(0, 0, -val );
+        Morceau3.transform.localRotation = Quaternion.Euler(0, 0, val );
     }
 }
