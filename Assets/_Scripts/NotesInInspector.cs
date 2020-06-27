@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _NotesInInspector : MonoBehaviour
+public class NotesInInspector : MonoBehaviour
 {
     [TextArea(1,1)]
     public string Objet = "";

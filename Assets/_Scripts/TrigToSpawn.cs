@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class TrigToSpawn : MonoBehaviour
 {
-    public GameObject spawnPoint;
+    public Spawn spawn;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        other.gameObject.transform.position = spawnPoint.transform.position;
-        other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GameObject.Find("Script Manager").GetComponent<Spawn>();
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        spawn.spawn(other.gameObject);
+    }
+
 }

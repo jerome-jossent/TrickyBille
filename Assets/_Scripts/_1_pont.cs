@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pont : MonoBehaviour
+public class _1_pont : MonoBehaviour
 {
     [SerializeField] GameObject Morceau1, Morceau2, Morceau3;
     public string InputAxe;
