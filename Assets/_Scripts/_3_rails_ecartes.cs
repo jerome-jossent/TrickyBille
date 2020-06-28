@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class _3_rails_ecartes : MonoBehaviour
@@ -12,7 +10,6 @@ public class _3_rails_ecartes : MonoBehaviour
     public float val;
 
     public float degMax;
-
 
     void Update()
     {

@@ -9,14 +9,31 @@ public class Spawn : MonoBehaviour
     public int niveau;
     public GameObject[] spawnPoint;
 
+    public bool spawnDebugAtStart;
+    public KeyCode spawnDebugKeyCode;
+    public GameObject spawnPointDebug;
+
     void Start()
     {
-        spawn(Bille);
+        if (spawnDebugAtStart && spawnPointDebug.activeSelf && spawnPointDebug.transform.parent.gameObject.activeSelf)
+            spawn(Bille, true);
+        else
+            spawn(Bille);
     }
 
-    public void spawn(GameObject QUOI)
+    void Update()
     {
-        QUOI.transform.position = spawnPoint[niveau - 1].transform.position;
+        if (Input.GetKeyDown(spawnDebugKeyCode))
+            spawn(Bille, true);
+    }
+
+    public void spawn(GameObject QUOI, bool debug = false)
+    {
+        if (debug)
+            QUOI.transform.position = spawnPointDebug.transform.position;
+        else
+            QUOI.transform.position = spawnPoint[niveau - 1].transform.position;
+
         QUOI.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
