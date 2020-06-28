@@ -9,6 +9,14 @@ public class Trig : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _ba.Trig(this, other.gameObject);
+        _ba.TrigEnter(this, other.gameObject);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        _ba.TrigStay(this, other.gameObject);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        _ba.TrigExit(this, other.gameObject);
     }
 }

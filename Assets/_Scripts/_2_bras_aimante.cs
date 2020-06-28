@@ -117,7 +117,7 @@ public class _2_bras_aimante : MonoBehaviour
         return TextAnchor.MiddleCenter;
     }
 
-    internal void Trig(Trig trig, GameObject go)
+    internal void TrigEnter(Trig trig, GameObject go)
     {
         if (trig == _ZoneStart)
         {
@@ -132,5 +132,37 @@ public class _2_bras_aimante : MonoBehaviour
             rb.isKinematic = false;
             go.transform.parent = null;
         }
+    }
+    internal void TrigStay(Trig trig, GameObject go)
+    {
+        //if (trig == _ZoneStart)
+        //{
+        //    Rigidbody rb = go.GetComponent<Rigidbody>();
+        //    rb.isKinematic = true;
+        //    go.transform.SetParent(Aimant.transform);
+        //    go.transform.position = Aimant.transform.position;
+        //}
+        //if (trig == _ZoneStop)
+        //{
+        //    Rigidbody rb = go.GetComponent<Rigidbody>();
+        //    rb.isKinematic = false;
+        //    go.transform.parent = null;
+        //}
+    }
+    internal void TrigExit(Trig trig, GameObject go)
+    {
+        //if (trig == _ZoneStart)
+        //{
+        //    Rigidbody rb = go.GetComponent<Rigidbody>();
+        //    rb.isKinematic = true;
+        //    go.transform.SetParent(Aimant.transform);
+        //    go.transform.position = Aimant.transform.position;
+        //}
+        //if (trig == _ZoneStop)
+        //{
+        //    Rigidbody rb = go.GetComponent<Rigidbody>();
+        //    rb.isKinematic = false;
+        //    go.transform.parent = null;
+        //}
     }
 }
