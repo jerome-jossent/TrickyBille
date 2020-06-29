@@ -5,8 +5,7 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject Bille;
-    [Range(1, 9)]
-    public int niveau;
+    [Range(1, 9)] public int niveau;
     public GameObject[] spawnPoint;
 
     public bool spawnDebugAtStart;

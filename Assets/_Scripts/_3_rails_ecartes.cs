@@ -1,26 +1,30 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class _3_rails_ecartes : MonoBehaviour
 {
     public GameObject Rail_Gauche;
     public GameObject Rail_Droite;
     public GameObject Poussoir;
-    public string InputAxe;
     public float valbrute, valbruteprec;
     public float val;
 
     public float degMax;
     Vector3 poussoir_alt_init;
 
-    private void Start()
+    Gamepad gamepad;
+        
+    void Start()
     {
         poussoir_alt_init = Poussoir.transform.localPosition;
     }
 
     void Update()
     {
-        valbrute = Input.GetAxis(InputAxe);
+        if (gamepad == null) return;
+        
+        valbrute = gamepad.leftStick.ReadValue().y;
         if (valbrute < 0)
             valbrute = 0;
 
@@ -33,5 +37,10 @@ public class _3_rails_ecartes : MonoBehaviour
             Poussoir.transform.localPosition = push;
             valbruteprec = valbrute;
         }
+    }
+
+    public void GetController()
+    {
+        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 }

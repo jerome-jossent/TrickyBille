@@ -8,7 +8,7 @@ public class TrigToSpawn : MonoBehaviour
 
     private void Start()
     {
-        spawn = GameObject.Find("Script Manager").GetComponent<Spawn>();
+        spawn = GameObject.Find("Scripts Manager").GetComponent<Spawn>();
     }
 
     void OnTriggerEnter(Collider other)

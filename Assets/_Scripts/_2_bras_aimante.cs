@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class _2_bras_aimante : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class _2_bras_aimante : MonoBehaviour
     //subjectivement, ça correspondrait à 3 tours de joysticks.
     public string InputAxeH;
     public string InputAxeV;
-    public float valbruteH; // comprise entre -1 et 1
-    public float valbruteV; // comprise entre -1 et 1
+    // comprise entre -1 et 1
+    // comprise entre -1 et 1
 
     public float joy_ang_deg; // calcul de la position (angulaire) du joystick
     public TextAnchor joy_pos;
@@ -24,6 +25,8 @@ public class _2_bras_aimante : MonoBehaviour
     public float vitesseangulaire;
     private Quaternion targetRotation;
 
+    Gamepad gamepad;
+   public Vector2 valbrute;
     void Start()
     {
         _ZoneStart._ba = this;
@@ -32,10 +35,11 @@ public class _2_bras_aimante : MonoBehaviour
 
     void Update()
     {
-        valbruteH = Input.GetAxis(InputAxeH);
-        valbruteV = Input.GetAxis(InputAxeV);
+        if (gamepad == null) return;
 
-        joy_pos = AngleToOrientation(valbruteV, valbruteH);
+        valbrute = gamepad.rightStick.ReadValue();
+
+        joy_pos = AngleToOrientation(valbrute.y, valbrute.x);
         float increment = CalculIncrement(joy_pos) * 10;
         if (increment != 0)
         {
@@ -46,6 +50,11 @@ public class _2_bras_aimante : MonoBehaviour
         }
 
         Pivot.transform.rotation = Quaternion.Slerp(Pivot.transform.rotation, targetRotation, vitesseangulaire * Time.deltaTime);
+    }
+
+    public void GetController()
+    {
+        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 
     float CalculIncrement(TextAnchor joy_pos)
@@ -100,20 +109,20 @@ public class _2_bras_aimante : MonoBehaviour
         return 0f;
     }
 
-    TextAnchor AngleToOrientation(float valbruteV, float valbruteH)
+    TextAnchor AngleToOrientation(float V, float H)
     {
-        if (Math.Abs(valbruteV) + Math.Abs(valbruteH) < 1)
+        if (Math.Abs(V) + Math.Abs(H) < 1)
             return TextAnchor.MiddleCenter;
 
-        joy_ang_deg = Mathf.Atan2(valbruteV, valbruteH) * 180 / Mathf.PI;
+        joy_ang_deg = Mathf.Atan2(V, H) * 180 / Mathf.PI;
         if (joy_ang_deg < 22.5f && joy_ang_deg > -22.5f) return TextAnchor.MiddleRight;
-        if (joy_ang_deg < 67.5f && joy_ang_deg > 22.5f) return TextAnchor.LowerRight;
-        if (joy_ang_deg < 112.5f && joy_ang_deg > 67.5f) return TextAnchor.LowerCenter;
-        if (joy_ang_deg < 157.5f && joy_ang_deg > 112.5f) return TextAnchor.LowerLeft;
+        if (joy_ang_deg < 67.5f && joy_ang_deg > 22.5f) return TextAnchor.UpperRight;
+        if (joy_ang_deg < 112.5f && joy_ang_deg > 67.5f) return TextAnchor.UpperCenter;
+        if (joy_ang_deg < 157.5f && joy_ang_deg > 112.5f) return TextAnchor.UpperLeft;
         if (joy_ang_deg < -157.5f || joy_ang_deg > 157.5f) return TextAnchor.MiddleLeft;
-        if (joy_ang_deg < -112.5f && joy_ang_deg > -157.5f) return TextAnchor.UpperLeft;
-        if (joy_ang_deg < -67.5f && joy_ang_deg > -112.5f) return TextAnchor.UpperCenter;
-        if (joy_ang_deg < -22.5f && joy_ang_deg > -67.5f) return TextAnchor.UpperRight;
+        if (joy_ang_deg < -112.5f && joy_ang_deg > -157.5f) return TextAnchor.LowerLeft;
+        if (joy_ang_deg < -67.5f && joy_ang_deg > -112.5f) return TextAnchor.LowerCenter;
+        if (joy_ang_deg < -22.5f && joy_ang_deg > -67.5f) return TextAnchor.LowerRight;
         return TextAnchor.MiddleCenter;
     }
 
