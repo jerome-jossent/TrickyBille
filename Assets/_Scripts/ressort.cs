@@ -8,18 +8,28 @@ public class ressort : MonoBehaviour
     public float power;
     Rigidbody rb;
 
+    bool hop;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        //if (Input.GetKeyDown(touche))
         if (UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame)
+        {
+            hop = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (hop)
         {
             rb.AddForce(new Vector3(0, 1, 0) * power, ForceMode.Impulse);
             Debug.Log("paf");
+            hop = false;
         }
     }
 }
