@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class _controller : MonoBehaviour
 {
     public Gamepad gamepad;
-    public GameObject[] scripts;
+    //public GameObject[] scripts;
 
     void Start()
     {
@@ -17,11 +17,16 @@ public class _controller : MonoBehaviour
 
     void ReferenceController()
     {
-        foreach (GameObject item in scripts)
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject go in allObjects)
         {
-            MonoBehaviour mb = item?.GetComponent<MonoBehaviour>();
+            MonoBehaviour mb = go.GetComponent<MonoBehaviour>();
             MethodInfo info = mb?.GetType().GetMethod("GetController");
-            info?.Invoke(mb, null);
+            if (info != null)
+            {
+                Debug.Log("Link Controller to " + go.name);
+                info.Invoke(mb, null);
+            }
         }
     }
 

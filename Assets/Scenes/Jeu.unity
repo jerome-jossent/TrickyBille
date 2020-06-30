@@ -4670,7 +4670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436406642}
   m_LocalRotation: {x: 0.0049553644, y: 0.9999877, z: -0, w: 0.000000029802322}
-  m_LocalPosition: {x: 2.72, y: 0.76, z: 0.09}
+  m_LocalPosition: {x: 2.73, y: 1.66, z: 0.09}
   m_LocalScale: {x: 1.0470835, y: 1.0004629, z: 1.0473572}
   m_Children: []
   m_Father: {fileID: 1153718015}
@@ -10962,7 +10962,7 @@ GameObject:
   - component: {fileID: 992467190}
   - component: {fileID: 992467191}
   m_Layer: 0
-  m_Name: pont
+  m_Name: 1_Pont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38112,8 +38112,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1153718015}
+  - component: {fileID: 1153718016}
   m_Layer: 0
-  m_Name: Plateau_inverse
+  m_Name: 4_Plateau_inverse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38136,6 +38137,23 @@ Transform:
   m_Father: {fileID: 80911434}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1153718016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153718014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38a54f5f312eda42bc25c525aea70bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plateau_rotule: {fileID: 1775357036}
+  coeff_H: -5
+  coeff_V: 5
+  valbrute: {x: 0, y: 0}
+  plateau_positionInit: {x: 0, y: 0, z: 0}
 --- !u!1 &1186932172
 GameObject:
   m_ObjectHideFlags: 0
@@ -58128,7 +58146,7 @@ GameObject:
   - component: {fileID: 1852433430}
   - component: {fileID: 1852433431}
   m_Layer: 0
-  m_Name: Rails_ecartes
+  m_Name: 3_Rails_ecartes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58780,7 +58798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bille: {fileID: 506539548}
-  niveau: 4
+  niveau: 3
   spawnPoint:
   - {fileID: 1540604083}
   - {fileID: 927366491}
@@ -58792,7 +58810,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spawnDebugAtStart: 0
-  spawnDebugKeyCode: 331
   spawnPointDebug: {fileID: 54384054}
 --- !u!114 &1974578906
 MonoBehaviour:
@@ -58806,16 +58823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41702271ece7c2349b93b1d54293f71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scripts:
-  - {fileID: 992467189}
-  - {fileID: 2007457855}
-  - {fileID: 1852433429}
-  - {fileID: 1153718014}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &2000829365
 GameObject:
   m_ObjectHideFlags: 0
@@ -58933,7 +58940,7 @@ GameObject:
   - component: {fileID: 2007457856}
   - component: {fileID: 2007457857}
   m_Layer: 0
-  m_Name: Bras_aimant
+  m_Name: 2_Bras_aimant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

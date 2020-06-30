@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Spawn : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class Spawn : MonoBehaviour
     public GameObject[] spawnPoint;
 
     public bool spawnDebugAtStart;
-    public KeyCode spawnDebugKeyCode;
     public GameObject spawnPointDebug;
+    Gamepad gamepad;
 
     void Start()
     {
@@ -22,8 +23,16 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(spawnDebugKeyCode))
+        if (gamepad == null) return;
+
+        if (gamepad.yButton.wasPressedThisFrame)
             spawn(Bille, true);
+        if (gamepad.bButton.wasPressedThisFrame)
+            spawn(Bille, false);
+    }
+    public void GetController()
+    {
+        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 
     public void spawn(GameObject QUOI, bool debug = false)
