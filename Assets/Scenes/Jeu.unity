@@ -38150,8 +38150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Plateau_rotule: {fileID: 1775357036}
-  coeff_H: -5
-  coeff_V: 5
+  coeff_H: -7
+  coeff_V: 7
   valbrute: {x: 0, y: 0}
   plateau_positionInit: {x: 0, y: 0, z: 0}
 --- !u!1 &1186932172
@@ -58798,7 +58798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bille: {fileID: 506539548}
-  niveau: 3
+  niveau: 4
   spawnPoint:
   - {fileID: 1540604083}
   - {fileID: 927366491}

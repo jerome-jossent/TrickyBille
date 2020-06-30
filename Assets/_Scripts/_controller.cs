@@ -8,26 +8,10 @@ using UnityEngine.InputSystem;
 public class _controller : MonoBehaviour
 {
     public Gamepad gamepad;
-    //public GameObject[] scripts;
 
     void Start()
     {
         StartCoroutine(FindController());
-    }
-
-    void ReferenceController()
-    {
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        foreach (GameObject go in allObjects)
-        {
-            MonoBehaviour mb = go.GetComponent<MonoBehaviour>();
-            MethodInfo info = mb?.GetType().GetMethod("GetController");
-            if (info != null)
-            {
-                Debug.Log("Link Controller to " + go.name);
-                info.Invoke(mb, null);
-            }
-        }
     }
 
     IEnumerator FindController()
@@ -43,4 +27,19 @@ public class _controller : MonoBehaviour
         }
         ReferenceController();
     }
+
+    void ReferenceController()
+    {
+        //juste pour l'exercice, parce qu'on aurait pu faire autrement
+        //utilisation de la REFLEXION : càd qu'à l'aide du nom d'une méthode,
+        //je la cherche et la démarre dans tous les scripts la possédant.
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject go in allObjects)
+        {
+            MonoBehaviour mb = go.GetComponent<MonoBehaviour>();
+            MethodInfo info = mb?.GetType().GetMethod("GetController");
+            info?.Invoke(mb, null);            
+        }
+    }
+
 }
