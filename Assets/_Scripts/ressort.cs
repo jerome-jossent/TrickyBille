@@ -15,9 +15,11 @@ public class ressort : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(touche))
+        //if (Input.GetKeyDown(touche))
+        if (UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame)
         {
             rb.AddForce(new Vector3(0, 1, 0) * power, ForceMode.Impulse);
+            Debug.Log("paf");
         }
     }
 }
