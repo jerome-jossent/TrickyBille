@@ -26,6 +26,7 @@ public class _4_plateau_inverse : MonoBehaviour
             plateau_positionInit.y,
             plateau_positionInit.z + valbrute.y * coeff_H);
     }
+
     public void GetController()
     {
         gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
