@@ -25,6 +25,7 @@ public class _controller : MonoBehaviour
             }
             yield return new WaitForSeconds(.1f);
         }
+        Debug.Log("Contrôleur de jeu trouvé : " + gamepad.displayName);
         ReferenceController();
     }
 
