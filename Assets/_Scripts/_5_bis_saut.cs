@@ -10,6 +10,11 @@ public class _5_bis_saut : MonoBehaviour
     public Collider other;
     public Animator animationPoussoir;
 
+    private void Start()
+    {
+        direction = transform.localRotation * direction;
+    }
+
     private void Update()
     {
         hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame;
