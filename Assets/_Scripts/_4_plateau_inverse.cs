@@ -18,7 +18,7 @@ public class _4_plateau_inverse : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) return;
+        if (gamepad == null) GetController();
 
         valbrute = gamepad.rightStick.ReadValue();
         Plateau_rotule.transform.localRotation = Quaternion.Euler(

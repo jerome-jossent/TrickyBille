@@ -9,7 +9,7 @@ public class _controller : MonoBehaviour
 {
     public Gamepad gamepad;
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(FindController());
     }
@@ -26,21 +26,23 @@ public class _controller : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         Debug.Log("Contrôleur de jeu trouvé : " + gamepad.displayName);
-        ReferenceController();
+        //ReferenceController();
     }
 
     void ReferenceController()
     {
-        //juste pour l'exercice, parce qu'on aurait pu faire autrement
-        //utilisation de la REFLEXION : càd qu'à l'aide du nom d'une méthode,
-        //je la cherche et la démarre dans tous les scripts la possédant.
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        foreach (GameObject go in allObjects)
+        // juste pour l'exercice, parce qu'on aurait pu faire autrement
+        // utilisation de la REFLECTION : càd qu'à l'aide du nom d'une méthode,
+        // je la cherche et la démarre dans tous les scripts la possédant.
+        MonoBehaviour[] allScripts = Resources.FindObjectsOfTypeAll(typeof(MonoBehaviour)) as MonoBehaviour[];
+        foreach (MonoBehaviour mb in allScripts)
         {
-            MonoBehaviour mb = go.GetComponent<MonoBehaviour>();
-            MethodInfo info = mb?.GetType().GetMethod("GetController");
-            info?.Invoke(mb, null);            
+            MethodInfo info = mb.GetType().GetMethod("GetController");
+            if (info != null)
+            {
+                info.Invoke(mb, null);
+                //Debug.Log(gamepad.displayName + " linked to " + mb.gameObject.name);
+            }
         }
     }
-
 }

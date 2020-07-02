@@ -35,7 +35,7 @@ public class _2_bras_aimante : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) return;
+        if (gamepad == null) GetController();
 
         valbrute = gamepad.rightStick.ReadValue();
 

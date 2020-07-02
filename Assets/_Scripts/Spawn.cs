@@ -23,13 +23,31 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) return;
+        if (gamepad == null) GetController();
+
+        bool whanttospawn = gamepad.bButton.wasPressedThisFrame;
+        if (gamepad.leftShoulder.wasPressedThisFrame)
+        {
+            NextLevel();
+            whanttospawn = true;
+        }
 
         if (gamepad.yButton.wasPressedThisFrame)
             spawn(Bille, true);
-        if (gamepad.bButton.wasPressedThisFrame)
+        if (whanttospawn)
             spawn(Bille, false);
+
     }
+
+    void NextLevel()
+    {
+        do
+        {
+            niveau++;
+            if (niveau > 9) niveau = 1;
+        } while (spawnPoint[niveau - 1] == null);
+    }
+
     public void GetController()
     {
         gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;

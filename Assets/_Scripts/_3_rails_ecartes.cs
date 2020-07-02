@@ -22,7 +22,7 @@ public class _3_rails_ecartes : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) return;
+        if (gamepad == null) GetController();
         
         valbrute = gamepad.leftStick.ReadValue().y;
         if (valbrute < 0)
