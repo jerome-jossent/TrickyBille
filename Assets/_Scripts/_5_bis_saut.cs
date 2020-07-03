@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class _5_bis_saut : MonoBehaviour
 {
+    [SerializeField] _controller controller;
     public Vector3 direction;
     public float power;
     bool hop;
     public Collider other;
     public Animator animationPoussoir;
-    Gamepad gamepad;
 
     private void Start()
     {
@@ -19,15 +19,11 @@ public class _5_bis_saut : MonoBehaviour
 
     private void Update()
     {
-        if (gamepad == null) GetController();
-        hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame ||
-              gamepad.aButton.wasPressedThisFrame;
+        if (controller.gamepad == null) return;
+             hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame ||
+                   controller.gamepad.aButton.wasPressedThisFrame;
         if (hop)
             animationPoussoir.SetTrigger("hop"); //https://www.studica.com/blog/unity-tutorial-animator-controllers
-    }
-    public void GetController()
-    {
-        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 
     public void _OnTriggerStay()

@@ -4,45 +4,50 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class _controller : MonoBehaviour
-{
+{//https://forum.unity.com/threads/new-input-system-not-working-in-webgl-builds.870421/
     public Gamepad gamepad;
+    public Text text;
 
-    void Awake()
+    int i = 0;
+
+    public void Update()
     {
-        StartCoroutine(FindController());
+        if (gamepad != null) return;
+        
+        gamepad = Gamepad.current;
+        //foreach (Gamepad g in Gamepad.all)
+        //{
+        //    gamepad = g;
+        //    break;
+        //}
+        if (gamepad != null)
+            text.text = "Contrôleur de jeu trouvé : " + gamepad.displayName;
+        else
+            text.text = "pas trouvé(déconnecté/reconnecté) : " + i++;
     }
 
-    IEnumerator FindController()
-    {
-        while (gamepad == null)
-        {   //prend le premier controller
-            foreach (Gamepad g in Gamepad.all)
-            {
-                gamepad = g;
-                break;
-            }
-            yield return new WaitForSeconds(.1f);
-        }
-        Debug.Log("Contrôleur de jeu trouvé : " + gamepad.displayName);
-        //ReferenceController();
-    }
+    //void Awake()
+    //{
+    //    StartCoroutine(FindController());
+    //}
 
-    void ReferenceController()
-    {
-        // juste pour l'exercice, parce qu'on aurait pu faire autrement
-        // utilisation de la REFLECTION : càd qu'à l'aide du nom d'une méthode,
-        // je la cherche et la démarre dans tous les scripts la possédant.
-        MonoBehaviour[] allScripts = Resources.FindObjectsOfTypeAll(typeof(MonoBehaviour)) as MonoBehaviour[];
-        foreach (MonoBehaviour mb in allScripts)
-        {
-            MethodInfo info = mb.GetType().GetMethod("GetController");
-            if (info != null)
-            {
-                info.Invoke(mb, null);
-                //Debug.Log(gamepad.displayName + " linked to " + mb.gameObject.name);
-            }
-        }
-    }
+    //IEnumerator FindController()
+    //{
+    //    int i = 0;
+    //    while (gamepad == null)
+    //    {   //prend le premier controller
+    //        foreach (Gamepad g in Gamepad.all)
+    //        {
+    //            gamepad = g;
+    //            break;
+    //        }
+    //        yield return new WaitForSeconds(.1f);
+    //        text.text = "pas trouvé : " + i++;
+    //    }
+    //    text.text = "Contrôleur de jeu trouvé : " + gamepad.displayName;
+    //    Debug.Log("Contrôleur de jeu trouvé : " + gamepad.displayName);
+    //}
 }

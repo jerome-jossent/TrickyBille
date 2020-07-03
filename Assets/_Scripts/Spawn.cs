@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Spawn : MonoBehaviour
 {
+    [SerializeField] _controller controller;
     public GameObject Bille;
     [Range(1, 9)] public int niveau;
     public GameObject[] spawnPoint;
 
     public bool spawnDebugAtStart;
     public GameObject spawnPointDebug;
-    Gamepad gamepad;
 
     void Start()
     {
@@ -23,16 +23,16 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) GetController();
+        if (controller.gamepad == null) return;
 
-        bool whanttospawn = gamepad.bButton.wasPressedThisFrame;
-        if (gamepad.leftShoulder.wasPressedThisFrame)
+        bool whanttospawn = controller.gamepad.bButton.wasPressedThisFrame;
+        if (controller.gamepad.leftShoulder.wasPressedThisFrame)
         {
             NextLevel();
             whanttospawn = true;
         }
 
-        if (gamepad.yButton.wasPressedThisFrame)
+        if (controller.gamepad.yButton.wasPressedThisFrame)
             spawn(Bille, true);
         if (whanttospawn)
             spawn(Bille, false);
@@ -46,11 +46,6 @@ public class Spawn : MonoBehaviour
             niveau++;
             if (niveau > 9) niveau = 1;
         } while (spawnPoint[niveau - 1] == null);
-    }
-
-    public void GetController()
-    {
-        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 
     public void spawn(GameObject QUOI, bool debug = false)

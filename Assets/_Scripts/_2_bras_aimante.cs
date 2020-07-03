@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class _2_bras_aimante : MonoBehaviour
 {
+    [SerializeField] _controller controller;
     //il faut environ tourner 3 fois le bouton (trois coup de poignet) pour réaliser un demi-tour (0 à 180° ou 0 à -180°)
-
     public GameObject Pivot;
     public Trig _ZoneStart, _ZoneStop; //zones d'activités de l'aimant
     public GameObject Aimant; //point d'ancrage positionné au bout du bras
@@ -25,8 +25,8 @@ public class _2_bras_aimante : MonoBehaviour
     public float vitesseangulaire;
     private Quaternion targetRotation;
 
-    Gamepad gamepad;
-   public Vector2 valbrute;
+    public Vector2 valbrute;
+
     void Start()
     {
         _ZoneStart._ba = this;
@@ -35,9 +35,9 @@ public class _2_bras_aimante : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) GetController();
+        if (controller.gamepad == null) return;
 
-        valbrute = gamepad.rightStick.ReadValue();
+        valbrute = controller.gamepad.rightStick.ReadValue();
 
         joy_pos = AngleToOrientation(valbrute.y, valbrute.x);
         float increment = CalculIncrement(joy_pos) * 10;
@@ -50,11 +50,6 @@ public class _2_bras_aimante : MonoBehaviour
         }
 
         Pivot.transform.rotation = Quaternion.Slerp(Pivot.transform.rotation, targetRotation, vitesseangulaire * Time.deltaTime);
-    }
-
-    public void GetController()
-    {
-        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 
     float CalculIncrement(TextAnchor joy_pos)

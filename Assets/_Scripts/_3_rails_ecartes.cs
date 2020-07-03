@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class _3_rails_ecartes : MonoBehaviour
 {
+    [SerializeField] _controller controller;
     public GameObject Rail_Gauche;
     public GameObject Rail_Droite;
     public GameObject Poussoir;
@@ -12,9 +13,7 @@ public class _3_rails_ecartes : MonoBehaviour
 
     public float degMax;
     Vector3 poussoir_alt_init;
-
-    Gamepad gamepad;
-        
+            
     void Start()
     {
         poussoir_alt_init = Poussoir.transform.localPosition;
@@ -22,9 +21,9 @@ public class _3_rails_ecartes : MonoBehaviour
 
     void Update()
     {
-        if (gamepad == null) GetController();
-        
-        valbrute = gamepad.leftStick.ReadValue().y;
+        if (controller.gamepad == null) return;
+
+        valbrute = controller.gamepad.leftStick.ReadValue().y;
         if (valbrute < 0)
             valbrute = 0;
 
@@ -37,10 +36,5 @@ public class _3_rails_ecartes : MonoBehaviour
             Poussoir.transform.localPosition = push;
             valbruteprec = valbrute;
         }
-    }
-
-    public void GetController()
-    {
-        gamepad = GameObject.Find("Scripts Manager").GetComponent<_controller>().gamepad;
     }
 }
