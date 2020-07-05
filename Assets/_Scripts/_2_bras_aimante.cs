@@ -125,48 +125,28 @@ public class _2_bras_aimante : MonoBehaviour
     {
         if (trig == _ZoneStart)
         {
+            Debug.Log("_ZoneStart");
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             go.transform.SetParent(Aimant.transform);
             go.transform.position = Aimant.transform.position;
+            _ZoneStart.gameObject.SetActive(false);
+            _ZoneStop.gameObject.SetActive(true);
         }
         if (trig == _ZoneStop)
         {
+            Debug.Log("_ZoneStop");
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             go.transform.parent = null;
+            _ZoneStop.gameObject.SetActive(false);
         }
     }
     internal void TrigStay(Trig trig, GameObject go)
     {
-        //if (trig == _ZoneStart)
-        //{
-        //    Rigidbody rb = go.GetComponent<Rigidbody>();
-        //    rb.isKinematic = true;
-        //    go.transform.SetParent(Aimant.transform);
-        //    go.transform.position = Aimant.transform.position;
-        //}
-        //if (trig == _ZoneStop)
-        //{
-        //    Rigidbody rb = go.GetComponent<Rigidbody>();
-        //    rb.isKinematic = false;
-        //    go.transform.parent = null;
-        //}
     }
     internal void TrigExit(Trig trig, GameObject go)
     {
-        //if (trig == _ZoneStart)
-        //{
-        //    Rigidbody rb = go.GetComponent<Rigidbody>();
-        //    rb.isKinematic = true;
-        //    go.transform.SetParent(Aimant.transform);
-        //    go.transform.position = Aimant.transform.position;
-        //}
-        //if (trig == _ZoneStop)
-        //{
-        //    Rigidbody rb = go.GetComponent<Rigidbody>();
-        //    rb.isKinematic = false;
-        //    go.transform.parent = null;
-        //}
+        _ZoneStart.gameObject.SetActive(true);
     }
 }
