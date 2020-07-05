@@ -125,7 +125,7 @@ public class _2_bras_aimante : MonoBehaviour
     {
         if (trig == _ZoneStart)
         {
-            Debug.Log("_ZoneStart");
+            //Debug.Log("_ZoneStart");
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             go.transform.SetParent(Aimant.transform);
@@ -135,7 +135,7 @@ public class _2_bras_aimante : MonoBehaviour
         }
         if (trig == _ZoneStop)
         {
-            Debug.Log("_ZoneStop");
+            //Debug.Log("_ZoneStop");
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             go.transform.parent = null;

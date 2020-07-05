@@ -16,17 +16,17 @@ public class _controller : MonoBehaviour
     public void Update()
     {
         if (gamepad != null) return;
-        
-        gamepad = Gamepad.current;
-        //foreach (Gamepad g in Gamepad.all)
-        //{
-        //    gamepad = g;
-        //    break;
-        //}
+
+        //gamepad = Gamepad.current;
+        foreach (Gamepad g in Gamepad.all)
+        {
+            gamepad = g;
+            break;
+        }
         if (gamepad != null)
             text.text = "Contrôleur de jeu trouvé : " + gamepad.displayName;
         else
-            text.text = "pas trouvé(déconnecté/reconnecté) : " + i++;
+            text.text = "Contrôleur pas trouvé\n(déconnecté/reconnecté) - " + i++;
     }
 
     //void Awake()
