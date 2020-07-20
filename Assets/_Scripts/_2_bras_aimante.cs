@@ -6,7 +6,8 @@ public class _2_bras_aimante : MonoBehaviour
 {
     [SerializeField] _controller controller;
     //il faut environ tourner 3 fois le bouton (trois coup de poignet) pour réaliser un demi-tour (0 à 180° ou 0 à -180°)
-    public GameObject Pivot;
+    public GameObject Pivot_bras_aimante;
+    public GameObject Pivot_bras_vaisseau;
     public Trig _ZoneStart, _ZoneStop; //zones d'activités de l'aimant
     public GameObject Aimant; //point d'ancrage positionné au bout du bras
 
@@ -23,7 +24,8 @@ public class _2_bras_aimante : MonoBehaviour
 
     public float angleTarget;
     public float vitesseangulaire;
-    private Quaternion targetRotation;
+    Quaternion targetRotation_bras_aimante;
+    Quaternion targetRotation_bras_vaisseau;
 
     public Vector2 valbrute;
 
@@ -46,10 +48,12 @@ public class _2_bras_aimante : MonoBehaviour
             angleTarget += increment;
             if (angleTarget > 0) angleTarget = 0;
             if (angleTarget < -180) angleTarget = -180;
-            targetRotation = Quaternion.Euler(0, angleTarget, 0);
+            targetRotation_bras_aimante = Quaternion.Euler(0, angleTarget, 0);
+            targetRotation_bras_vaisseau = Quaternion.Euler(0, -angleTarget, 0);
         }
 
-        Pivot.transform.rotation = Quaternion.Slerp(Pivot.transform.rotation, targetRotation, vitesseangulaire * Time.deltaTime);
+        Pivot_bras_aimante.transform.rotation = Quaternion.Slerp(Pivot_bras_aimante.transform.rotation, targetRotation_bras_aimante, vitesseangulaire * Time.deltaTime);
+        Pivot_bras_vaisseau.transform.rotation = Quaternion.Slerp(Pivot_bras_vaisseau.transform.rotation, targetRotation_bras_vaisseau, vitesseangulaire * Time.deltaTime);
     }
 
     float CalculIncrement(TextAnchor joy_pos)
