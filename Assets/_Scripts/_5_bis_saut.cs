@@ -20,15 +20,15 @@ public class _5_bis_saut : MonoBehaviour
     private void Update()
     {
         if (controller.gamepad == null) return;
-             hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame ||
-                   controller.gamepad.aButton.wasPressedThisFrame;
+        hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame ||
+              controller.gamepad.aButton.wasPressedThisFrame;
         if (hop)
             animationPoussoir.SetTrigger("hop"); //https://www.studica.com/blog/unity-tutorial-animator-controllers
     }
 
     public void _OnTriggerStay()
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (hop)
             other.attachedRigidbody.AddForce(direction * power, ForceMode.Impulse);
     }

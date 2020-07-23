@@ -5,33 +5,85 @@ using UnityEngine;
 public class _8_bras_cloche : MonoBehaviour
 {
     [SerializeField] _controller controller;
-   // [SerializeField] GameObject GO_withRigidBody;
-   // Rigidbody rigidbody;
-    public float rotationSpeed;
-    public float xAngle, yAngle, zAngle;
+    public bool hop, hopped, go;
+    public Collider other;
+    [SerializeField] GameObject PointFixe;
 
+    public float zAngleStep, zAngleMax;
+    Quaternion rotationInit;
 
+    public Rigidbody rb;
     private void Start()
     {
-       // rigidbody = GO_withRigidBody.GetComponent<Rigidbody>();
+        rotationInit = transform.rotation;
     }
 
     void Update()
     {
-        if (controller.gamepad == null) return;
-        
-        if(controller.gamepad.xButton.wasPressedThisFrame)
-        {
-           // transform.RotateAround(target.transform.position, Vector3.up, 20 * Time.deltaTime);
+        if (controller.gamepad == null)
+            return;
 
-            transform.Rotate(xAngle, yAngle, zAngle, Space.Self);
-            //transform.Rotate(xAngle, yAngle, zAngle, Space.World);
-            //transform.Rotate(Vector3.forward, rotationSpeed);
+        hop = controller.gamepad.xButton.wasPressedThisFrame;
+
+        if (controller.gamepad.selectButton.wasPressedThisFrame)
+            ResetPosition();
+
+        if (other == null)
+            return;
+
+        if (hop)
+        {
+            go = true;
+        }
+        if (hopped)
+        {
+            other.gameObject.transform.parent = null;
+            rb.isKinematic = false;
         }
     }
 
     private void FixedUpdate()
     {
-        
+        if (go)
+        {
+            transform.Rotate(0, 0, zAngleStep, Space.Self);
+        }
+
+        if (transform.rotation.eulerAngles.z > zAngleMax)
+        {
+            go = false;
+            hopped = true;
+            transform.rotation = Quaternion.Euler(0, 0, zAngleMax);
+        }
     }
+
+    public void ResetPosition()
+    {
+        go = false;
+        hopped = false;
+//        transform.rotation = rotationInit;
+        transform.rotation = Quaternion.Euler(0, 0, 5);
+
+    }
+
+    public void _OnTriggerEnter()
+    {
+        if (hopped)
+            return;
+
+        Debug.Log("_OnTriggerEnter " + other.name);
+        rb = other.gameObject.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        other.gameObject.transform.SetParent(PointFixe.transform);
+        other.gameObject.transform.position = PointFixe.transform.position;
+    }
+    public void _OnTriggerStay()
+    {
+        //Debug.Log("_OnTriggerStay " + other.name);
+    }
+    public void _OnTriggerExit()
+    {
+        //Debug.Log("_OnTriggerExit " + other.name);
+    }
+
 }
