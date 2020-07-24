@@ -7,47 +7,37 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class _controller : MonoBehaviour
-{//https://forum.unity.com/threads/new-input-system-not-working-in-webgl-builds.870421/
+{
+    //https://forum.unity.com/threads/new-input-system-not-working-in-webgl-builds.870421/
     public Gamepad gamepad;
-    public Text text;
 
     int i = 0;
-
-    public void Update()
+    SCRIPTSMANAGER _sm;
+    void Awake()
     {
-        if (gamepad != null) return;
-
-        //gamepad = Gamepad.current;
-        foreach (Gamepad g in Gamepad.all)
-        {
-            gamepad = g;
-            break;
-        }
-        if (gamepad != null)
-            text.text = "Contrôleur de jeu trouvé : " + gamepad.displayName;
-        else
-            text.text = "Contrôleur pas trouvé\n(déconnecté/reconnecté) - " + i++;
+        _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
     }
 
-    //void Awake()
-    //{
-    //    StartCoroutine(FindController());
-    //}
+    public void _FindController()
+    {
+        StartCoroutine(GetFirstController());
+    }
 
-    //IEnumerator FindController()
-    //{
-    //    int i = 0;
-    //    while (gamepad == null)
-    //    {   //prend le premier controller
-    //        foreach (Gamepad g in Gamepad.all)
-    //        {
-    //            gamepad = g;
-    //            break;
-    //        }
-    //        yield return new WaitForSeconds(.1f);
-    //        text.text = "pas trouvé : " + i++;
-    //    }
-    //    text.text = "Contrôleur de jeu trouvé : " + gamepad.displayName;
-    //    Debug.Log("Contrôleur de jeu trouvé : " + gamepad.displayName);
-    //}
+    IEnumerator GetFirstController()
+    {
+        while (gamepad == null)
+        {
+            //gamepad = Gamepad.current;
+            foreach (Gamepad g in Gamepad.all)
+            {
+                gamepad = g;
+                break;
+            }
+            _sm._TeteHauteManager._DisplayTextInfo("Branchez une manette et appuyez sur un bouton\n(déconnecté/reconnecté)");
+            yield return new WaitForSeconds(0.2f);
+        }
+        _sm._TeteHauteManager._DisplayTextInfo("");
+
+        yield return null;
+    }
 }
