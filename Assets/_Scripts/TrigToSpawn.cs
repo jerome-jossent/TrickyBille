@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TrigToSpawn : MonoBehaviour
 {
-    Spawn spawn;
+    CheckPointEtSpawn spawn;
 
     private void Start()
     {
-        spawn = GameObject.Find("Scripts Manager").GetComponent<Spawn>();
+        spawn = GameObject.Find("Scripts Manager").GetComponent<CheckPointEtSpawn>();
     }
 
     void OnTriggerEnter(Collider other)

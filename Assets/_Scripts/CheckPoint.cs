@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    Spawn spawn_Manager;
+    CheckPointEtSpawn checkPointEtSpawn;
     private void Start()
     {
-        spawn_Manager = GameObject.Find("Scripts Manager").GetComponent<Spawn>();
+        checkPointEtSpawn = GameObject.Find("Scripts Manager").GetComponent<CheckPointEtSpawn>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -15,6 +15,6 @@ public class CheckPoint : MonoBehaviour
         if (other.name != "Bille")
             return;
 
-        spawn_Manager._CheckPoint(gameObject.transform.parent.gameObject);
+        checkPointEtSpawn._CheckPoint(gameObject.transform.parent.gameObject);
     }
 }

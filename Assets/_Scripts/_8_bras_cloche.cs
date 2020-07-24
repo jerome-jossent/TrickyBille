@@ -71,7 +71,7 @@ public class _8_bras_cloche : MonoBehaviour
         if (hopped)
             return;
 
-        Debug.Log("_OnTriggerEnter " + other.name);
+        //Debug.Log("_OnTriggerEnter " + other.name);
         rb = other.gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         other.gameObject.transform.SetParent(PointFixe.transform);

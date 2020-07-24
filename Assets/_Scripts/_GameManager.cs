@@ -57,7 +57,7 @@ public class _GameManager : MonoBehaviour
         if (!Chrono.ContainsKey(niveau))
         {
             Chrono.Add(niveau, Time.time - T0);
-            _sm._TeteHauteManager._DisplayLevel("Level " + niveau);
+            _sm._TeteHauteManager._DisplayLevel(niveau.ToString());
         }
 
     }
