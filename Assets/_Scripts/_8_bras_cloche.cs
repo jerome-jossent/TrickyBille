@@ -23,7 +23,7 @@ public class _8_bras_cloche : MonoBehaviour
         if (controller.gamepad == null)
             return;
 
-        hop = controller.gamepad.xButton.wasPressedThisFrame;
+        hop = controller.gamepad.aButton.wasPressedThisFrame;
 
         if (controller.gamepad.selectButton.wasPressedThisFrame)
             ResetPosition();
