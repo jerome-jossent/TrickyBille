@@ -29,14 +29,14 @@ public class CheckPointEtSpawn : MonoBehaviour
     {
         if (_sm._IM.controller.gamepad == null) return;
 
-        bool whanttospawn = _sm._IM.controller.gamepad.bButton.wasPressedThisFrame;
-        if (_sm._IM.controller.gamepad.leftShoulder.wasPressedThisFrame)
+        bool whanttospawn = _sm._IM.i_spawnToCheckpoint;
+        if (_sm._IM.i_goToNextLevel)
         {
             NextLevel();
             whanttospawn = true;
         }
 
-        if (_sm._IM.controller.gamepad.yButton.wasPressedThisFrame)
+        if (_sm._IM.i_spawnToDebugCheckpoint)
             spawn(Bille, true);
         if (whanttospawn)
             spawn(Bille, false);
