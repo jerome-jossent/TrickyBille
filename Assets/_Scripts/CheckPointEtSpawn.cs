@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class CheckPointEtSpawn : MonoBehaviour
 {
-    [SerializeField] _controller controller;
     public GameObject Bille;
     [Range(0, 7)] public int niveau;
     public GameObject[] spawnPoint;
@@ -28,16 +27,16 @@ public class CheckPointEtSpawn : MonoBehaviour
 
     void Update()
     {
-        if (controller.gamepad == null) return;
+        if (_sm._IM.controller.gamepad == null) return;
 
-        bool whanttospawn = controller.gamepad.bButton.wasPressedThisFrame;
-        if (controller.gamepad.leftShoulder.wasPressedThisFrame)
+        bool whanttospawn = _sm._IM.controller.gamepad.bButton.wasPressedThisFrame;
+        if (_sm._IM.controller.gamepad.leftShoulder.wasPressedThisFrame)
         {
             NextLevel();
             whanttospawn = true;
         }
 
-        if (controller.gamepad.yButton.wasPressedThisFrame)
+        if (_sm._IM.controller.gamepad.yButton.wasPressedThisFrame)
             spawn(Bille, true);
         if (whanttospawn)
             spawn(Bille, false);

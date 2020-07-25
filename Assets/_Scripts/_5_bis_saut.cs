@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 
 public class _5_bis_saut : MonoBehaviour
 {
-    [SerializeField] _controller controller;
     public Vector3 direction;
     public float power;
     bool hop;
     public Collider other;
     public Animator animationPoussoir;
-
+    SCRIPTSMANAGER _sm;
+    void Awake()
+    {
+        _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
+    }
     private void Start()
     {
         direction = transform.localRotation * direction;
@@ -19,9 +22,8 @@ public class _5_bis_saut : MonoBehaviour
 
     private void Update()
     {
-        if (controller.gamepad == null) return;
-        hop = UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame ||
-              controller.gamepad.aButton.wasPressedThisFrame;
+        if (_sm._IM.controller.gamepad == null) return;
+        hop = _sm._IM.i_5_saut;// controller.gamepad.aButton.wasPressedThisFrame;
         if (hop)
             animationPoussoir.SetTrigger("hop"); //https://www.studica.com/blog/unity-tutorial-animator-controllers
     }

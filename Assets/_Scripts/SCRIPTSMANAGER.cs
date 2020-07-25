@@ -8,4 +8,5 @@ public class SCRIPTSMANAGER : MonoBehaviour
     public TeteHauteManager _TeteHauteManager;
     public _controller _Controller;
     public CheckPointEtSpawn _CheckPointEtSpawn;
+    public Interactions_Manager _IM;
 }

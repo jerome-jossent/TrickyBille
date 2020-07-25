@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class _2_bras_aimante : MonoBehaviour
 {
-    [SerializeField] _controller controller;
     //il faut environ tourner 3 fois le bouton (trois coup de poignet) pour réaliser un demi-tour (0 à 180° ou 0 à -180°)
     public GameObject Pivot_bras_aimante;
     public GameObject Pivot_bras_vaisseau;
@@ -28,7 +27,11 @@ public class _2_bras_aimante : MonoBehaviour
     Quaternion targetRotation_bras_vaisseau;
 
     public Vector2 valbrute;
-
+    SCRIPTSMANAGER _sm;
+    void Awake()
+    {
+        _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
+    }
     void Start()
     {
         _ZoneStart._ba = this;
@@ -37,9 +40,9 @@ public class _2_bras_aimante : MonoBehaviour
 
     void Update()
     {
-        if (controller.gamepad == null) return;
+        if (_sm._IM.controller.gamepad == null) return;
 
-        valbrute = controller.gamepad.rightStick.ReadValue();
+        valbrute = _sm._IM.i_2et7_bras_aimante;
 
         joy_pos = AngleToOrientation(valbrute.y, valbrute.x);
         float increment = CalculIncrement(joy_pos) * 10;

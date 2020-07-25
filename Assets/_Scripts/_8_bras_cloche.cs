@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class _8_bras_cloche : MonoBehaviour
 {
-    [SerializeField] _controller controller;
     public bool hop, hopped, go;
     public Collider other;
     [SerializeField] GameObject PointFixe;
@@ -13,6 +12,12 @@ public class _8_bras_cloche : MonoBehaviour
     Quaternion rotationInit;
 
     public Rigidbody rb;
+    SCRIPTSMANAGER _sm;
+    void Awake()
+    {
+        _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
+    }
+
     private void Start()
     {
         rotationInit = transform.rotation;
@@ -20,12 +25,12 @@ public class _8_bras_cloche : MonoBehaviour
 
     void Update()
     {
-        if (controller.gamepad == null)
+        if (_sm._IM.controller.gamepad == null)
             return;
 
-        hop = controller.gamepad.aButton.wasPressedThisFrame;
+        hop = _sm._IM.i_8_lancement_bras_cloche;
 
-        if (controller.gamepad.selectButton.wasPressedThisFrame)
+        if (_sm._IM.i_8_lancement_bras_cloche_RESET)
             ResetPosition();
 
         if (other == null)

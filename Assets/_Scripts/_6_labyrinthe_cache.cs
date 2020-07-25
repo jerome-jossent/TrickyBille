@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 
 public class _6_labyrinthe_cache : MonoBehaviour
 {
-    [SerializeField] _controller controller;
     [SerializeField] GameObject Plateau_rotule;
     [SerializeField] GameObject toit;
     public float coeff_H, coeff_V;
     public Vector2 valbrute;
     public Vector3 plateau_positionInit;
-
+    SCRIPTSMANAGER _sm;
+    void Awake()
+    {
+        _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
+    }
     private void Start()
     {
         plateau_positionInit = Plateau_rotule.transform.localRotation.eulerAngles;
@@ -19,18 +22,18 @@ public class _6_labyrinthe_cache : MonoBehaviour
 
     void Update()
     {
-        if (controller.gamepad == null) return;
+        if (_sm._IM.controller.gamepad == null) return;
 
-        valbrute = controller.gamepad.leftStick.ReadValue();
+        valbrute = _sm._IM.i_6_labyrinthe_cache;
         Plateau_rotule.transform.localRotation = Quaternion.Euler(
             plateau_positionInit.x + valbrute.x * coeff_V,
             plateau_positionInit.y,
             plateau_positionInit.z + valbrute.y * coeff_H);
 
         int transparent = 0;
-        if (controller.gamepad.dpad.up.wasPressedThisFrame)
+        if (_sm._IM.i_6_labyrinthe_cache_TransparentPlus)
             transparent++;
-        if (controller.gamepad.dpad.down.wasPressedThisFrame)
+        if (_sm._IM.i_6_labyrinthe_cache_TransparentMoins)
             transparent--;
 
         if (transparent != 0)
