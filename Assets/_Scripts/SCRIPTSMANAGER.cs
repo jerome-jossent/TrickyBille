@@ -9,4 +9,5 @@ public class SCRIPTSMANAGER : MonoBehaviour
     public _controller _Controller;
     public CheckPointEtSpawn _CheckPointEtSpawn;
     public Interactions_Manager _IM;
+    public _BoardVersion _boardVersion;
 }
