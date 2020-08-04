@@ -15,7 +15,7 @@ public class _1_pont : MonoBehaviour
     }
     private void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+        //if (_sm._IM.controller.gamepad == null) return;
 
         valbrute = Math.Abs(_sm._IM.i_1_pont);
         val = coeff_degrees * (valbrute - 0.5f) * 2;

@@ -24,7 +24,7 @@ public class _3_rails_ecartes : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+       // if (_sm._IM.controller.gamepad == null) return;
 
         valbrute = _sm._IM.i_3_rails_ecartes;
         if (valbrute < 0)

@@ -40,7 +40,7 @@ public class _2_bras_aimante : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+       // if (_sm._IM.controller.gamepad == null) return;
 
         valbrute = _sm._IM.i_2et7_bras_aimante;
 

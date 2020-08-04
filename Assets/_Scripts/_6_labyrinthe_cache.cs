@@ -22,7 +22,7 @@ public class _6_labyrinthe_cache : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+       // if (_sm._IM.controller.gamepad == null) return;
 
         valbrute = _sm._IM.i_6_labyrinthe_cache;
         Plateau_rotule.transform.localRotation = Quaternion.Euler(

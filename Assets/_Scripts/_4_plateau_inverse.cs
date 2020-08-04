@@ -21,7 +21,7 @@ public class _4_plateau_inverse : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+       // if (_sm._IM.controller.gamepad == null) return;
 
         valbrute = _sm._IM.i_4_plateau_inverse;
         Plateau_rotule.transform.localRotation = Quaternion.Euler(

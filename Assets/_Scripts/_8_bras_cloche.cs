@@ -25,7 +25,7 @@ public class _8_bras_cloche : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+        //if (_sm._IM.controller.gamepad == null) return;
 
         hop = _sm._IM.i_8_lancement_bras_cloche;
 

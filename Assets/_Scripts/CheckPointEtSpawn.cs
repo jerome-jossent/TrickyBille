@@ -27,7 +27,7 @@ public class CheckPointEtSpawn : MonoBehaviour
 
     void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+        //if (_sm._IM.controller.gamepad == null) return;
 
         bool whanttospawn = _sm._IM.i_spawnToCheckpoint;
         if (_sm._IM.i_goToNextLevel)

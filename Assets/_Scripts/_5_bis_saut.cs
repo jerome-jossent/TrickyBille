@@ -22,7 +22,7 @@ public class _5_bis_saut : MonoBehaviour
 
     private void Update()
     {
-        if (_sm._IM.controller.gamepad == null) return;
+       // if (_sm._IM.controller.gamepad == null) return;
         hop = _sm._IM.i_5_saut;// controller.gamepad.aButton.wasPressedThisFrame;
         if (hop)
             animationPoussoir.SetTrigger("hop"); //https://www.studica.com/blog/unity-tutorial-animator-controllers

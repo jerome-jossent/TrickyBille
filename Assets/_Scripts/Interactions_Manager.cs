@@ -20,7 +20,6 @@ public class Interactions_Manager : MonoBehaviour
     public bool i_8_lancement_bras_cloche_RESET; 
     bool i_8_lancement_bras_cloche_RESET_precedent;
 
-
     public bool i_6_labyrinthe_cache_TransparentPlus;
     public bool i_6_labyrinthe_cache_TransparentMoins;
 
