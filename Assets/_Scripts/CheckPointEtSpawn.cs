@@ -39,7 +39,7 @@ public class CheckPointEtSpawn : MonoBehaviour
         if (_sm._IM.i_spawnToDebugCheckpoint)
             spawn(Bille, true);
         if (whanttospawn)
-            spawn(Bille, false);
+            _SpawnBall();
     }
 
     void NextLevel()
@@ -50,6 +50,11 @@ public class CheckPointEtSpawn : MonoBehaviour
             if (niveau > spawnPoint.Length-1) 
                 niveau = 0;
         } while (spawnPoint[niveau] == null);
+    }
+
+    public void _SpawnBall()
+    {
+        spawn(Bille, false);
     }
 
     public void spawn(GameObject QUOI, bool debug = false)
