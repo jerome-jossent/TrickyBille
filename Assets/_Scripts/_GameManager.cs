@@ -17,12 +17,13 @@ public class _GameManager : MonoBehaviour
 
     public enum step { prerequisite, start, run, finish }
     public step GameState;
+    step GameState_prec;
 
     public void Start()
     {
         GameState = step.prerequisite;
         Init();
-        start(); // temporaire...
+        _Start(); // temporaire...
     }
 
     private void Init()
@@ -36,13 +37,21 @@ public class _GameManager : MonoBehaviour
         //Update Chrono
         if (GameState == step.run)
         {
+            if (GameState_prec != GameState)
+                _sm._chrono._SetChronoStart();
             float dT = Time.time - T0;
             _sm._TeteHauteManager._DisplayTime(dT);
             _sm._chrono._ChronoUpdate(dT);
         }
+        else
+        {
+            if (GameState_prec != GameState)
+                _sm._chrono._SetChronoStop();
+        }
+        GameState_prec = GameState;
     }
 
-    public void start()
+    public void _Start()
     {
         GameState = step.start;
         //  démarrage chrono
@@ -60,7 +69,6 @@ public class _GameManager : MonoBehaviour
             Chrono.Add(niveau, Time.time - T0);
             _sm._TeteHauteManager._DisplayLevel(niveau.ToString());
         }
-
     }
 
     public void _Finish()
@@ -69,6 +77,8 @@ public class _GameManager : MonoBehaviour
         //terminé
         //  arrêt chrono
         //  scores
+
+        propose menu pour restart !!!!!!
     }
 
 

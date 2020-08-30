@@ -13,6 +13,8 @@ public class _Chrono : MonoBehaviour
     [SerializeField] float angle;
     public float CHRONO = 60;
 
+    [SerializeField] GameObject Btn_Stop, Btn_Start;
+
     // Update is called once per frame
     void Update()
     {
@@ -42,5 +44,20 @@ public class _Chrono : MonoBehaviour
             v = 0;
 
         val_aiguille_0_1 = v;
+    }
+
+    //Push chrono START button
+    public void _SetChronoStart()
+    {
+        Btn_Start.transform.localPosition = new Vector3(0, -0.5f, 0);
+        Btn_Stop.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
+
+    //Push chrono STOP button
+    public void _SetChronoStop()
+    {
+        Btn_Start.transform.localPosition = new Vector3(0, 0, 0);
+        Btn_Stop.transform.localPosition = new Vector3(0, -0.5f, 0);
     }
 }

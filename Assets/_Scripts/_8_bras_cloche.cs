@@ -25,8 +25,6 @@ public class _8_bras_cloche : MonoBehaviour
 
     void Update()
     {
-        //if (_sm._IM.controller.gamepad == null) return;
-
         hop = _sm._IM.i_8_lancement_bras_cloche;
 
         if (_sm._IM.i_8_lancement_bras_cloche_RESET)
@@ -35,10 +33,9 @@ public class _8_bras_cloche : MonoBehaviour
         if (other == null)
             return;
 
-        if (hop)
-        {
+        if (hop)        
             go = true;
-        }
+        
         if (hopped)
         {
             other.gameObject.transform.parent = null;
@@ -65,7 +62,6 @@ public class _8_bras_cloche : MonoBehaviour
     {
         go = false;
         hopped = false;
-//        transform.rotation = rotationInit;
         transform.rotation = Quaternion.Euler(0, 0, 5);
 
     }

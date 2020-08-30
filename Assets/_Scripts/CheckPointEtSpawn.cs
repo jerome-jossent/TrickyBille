@@ -6,9 +6,8 @@ using UnityEngine.InputSystem;
 public class CheckPointEtSpawn : MonoBehaviour
 {
     public GameObject Bille;
-    [Range(0, 7)] public int niveau;
+    [Range(0, 8)] public int niveau;
     public GameObject[] spawnPoint;
-
     public bool spawnDebugAtStart;
     public GameObject spawnPointDebug;
 
@@ -64,7 +63,11 @@ public class CheckPointEtSpawn : MonoBehaviour
         else
             QUOI.transform.position = spawnPoint[niveau].transform.position;
 
-        QUOI.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        QUOI.transform.parent = null;
+
+        Rigidbody rb = QUOI.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = false;
     }
 
     public void _CheckPoint(GameObject checkpointPasse)
@@ -84,7 +87,7 @@ public class CheckPointEtSpawn : MonoBehaviour
         if (niveau == spawnPoint.Length - 1)
         {
             _sm._gameManager._Finish();
-            niveau = 0;
+            //niveau = 0;
         }
     }
 }
