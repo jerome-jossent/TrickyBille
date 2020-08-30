@@ -38,6 +38,7 @@ public class _GameManager : MonoBehaviour
         {
             float dT = Time.time - T0;
             _sm._TeteHauteManager._DisplayTime(dT);
+            _sm._chrono._ChronoUpdate(dT);
         }
     }
 
