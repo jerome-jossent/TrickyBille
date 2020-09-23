@@ -90,4 +90,10 @@ public class CheckPointEtSpawn : MonoBehaviour
             //niveau = 0;
         }
     }
+
+    public void _InitPosition()
+    {
+        niveau = 0;
+        _SpawnBall();
+    }
 }

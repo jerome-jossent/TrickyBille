@@ -11,4 +11,5 @@ public class SCRIPTSMANAGER : MonoBehaviour
     public Interactions_Manager _IM;
     public _BoardVersion _boardVersion;
     public _Chrono _chrono;
+    public _PiegeManager _piegeManager;
 }

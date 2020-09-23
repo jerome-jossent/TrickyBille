@@ -33,7 +33,8 @@ public class _controller : MonoBehaviour
                 gamepad = g;
                 break;
             }
-            _sm._TeteHauteManager._DisplayTextInfo("Branchez une manette et appuyez sur un bouton\n(déconnecté/reconnecté)");
+            _sm._TeteHauteManager._DisplayTextInfo("Branchez une manette et appuyez sur un bouton\n" +
+                "(déconnecté/reconnecté)");
             yield return new WaitForSeconds(0.2f);
         }
         _sm._TeteHauteManager._DisplayTextInfo("");
