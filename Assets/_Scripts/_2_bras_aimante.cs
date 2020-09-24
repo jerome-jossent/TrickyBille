@@ -28,6 +28,7 @@ public class _2_bras_aimante : MonoBehaviour
 
     public Vector2 valbrute;
     SCRIPTSMANAGER _sm;
+
     void Awake()
     {
         _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
@@ -57,6 +58,12 @@ public class _2_bras_aimante : MonoBehaviour
 
         Pivot_bras_aimante.transform.rotation = Quaternion.Slerp(Pivot_bras_aimante.transform.rotation, targetRotation_bras_aimante, vitesseangulaire * Time.deltaTime);
         Pivot_bras_vaisseau.transform.rotation = Quaternion.Slerp(Pivot_bras_vaisseau.transform.rotation, targetRotation_bras_vaisseau, vitesseangulaire * Time.deltaTime);
+    }
+
+    internal void _Reset()
+    {
+        _ZoneStart.gameObject.SetActive(true);
+        _ZoneStop.gameObject.SetActive(true);
     }
 
     float CalculIncrement(TextAnchor joy_pos)

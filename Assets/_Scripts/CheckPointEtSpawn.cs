@@ -77,18 +77,28 @@ public class CheckPointEtSpawn : MonoBehaviour
             if (checkpointPasse == spawnPoint[i])
             {
                 if (i > niveau)
+                {
                     niveau = i;
+
+                    _sm._gameManager._NewLevelReached(niveau);
+
+                    if (niveau == spawnPoint.Length - 1)
+                    {
+                        _sm._gameManager._Finish();
+                        //niveau = 0;
+                    }
+                }
                 break;
             }
         }
 
-        _sm._gameManager._NewLevelReached(niveau);
+        //_sm._gameManager._NewLevelReached(niveau);
 
-        if (niveau == spawnPoint.Length - 1)
-        {
-            _sm._gameManager._Finish();
-            //niveau = 0;
-        }
+        //if (niveau == spawnPoint.Length - 1)
+        //{
+        //    _sm._gameManager._Finish();
+        //    //niveau = 0;
+        //}
     }
 
     public void _InitPosition()

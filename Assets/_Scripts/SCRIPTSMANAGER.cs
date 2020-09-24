@@ -12,4 +12,5 @@ public class SCRIPTSMANAGER : MonoBehaviour
     public _BoardVersion _boardVersion;
     public _Chrono _chrono;
     public _PiegeManager _piegeManager;
+    public Choose_Control_and_Color _choose_Control_And_Color;
 }

@@ -15,7 +15,6 @@ public class _GameManager : MonoBehaviour
         _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
     }
 
-    //public enum step { prerequisite, start, run, finish }
     public enum step { prerequisite, run, finish }
     public step GameState;
     step GameState_prec;
@@ -61,10 +60,14 @@ public class _GameManager : MonoBehaviour
         _sm._chrono._ChronoUpdate(0);
         // placement de la bille au point de départ
         _sm._CheckPointEtSpawn._InitPosition();
+
+       // _sm._choose_Control_And_Color._SetToggleButtonsFromValues();
     }
 
     public void _NewLevelReached(int niveau)
     {
+        //Debug.Log("Niveau atteint : " + niveau.ToString());
+        
         //niveaux atteints
         GameState = step.run;
         //  enregistrement des chronos pour chaque niveau
@@ -74,12 +77,12 @@ public class _GameManager : MonoBehaviour
             _sm._TeteHauteManager._DisplayLevel(niveau.ToString());
         }
 
-
         //pour le cas du bras aimanté, il faut réactiver l'aimant si la valeur est différente de 3
-        if (niveau != 3)
+        if (niveau != 4)
         {
             _sm._piegeManager._2_Bras_Aimante._Reset();
         }
+
 
 
 
@@ -98,7 +101,7 @@ public class _GameManager : MonoBehaviour
 
     public void _Restart()
     {
+        _sm._piegeManager._8_Bras_Cloche._Reset();
         _Start();
     }
-
 }

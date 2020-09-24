@@ -9,7 +9,7 @@ public class _8_bras_cloche : MonoBehaviour
     [SerializeField] GameObject PointFixe;
 
     public float zAngleStep, zAngleMax;
-    Quaternion rotationInit;
+    Quaternion rotationInit = Quaternion.Euler(0, 0, 5);
 
     public Rigidbody rb;
     SCRIPTSMANAGER _sm;
@@ -28,7 +28,7 @@ public class _8_bras_cloche : MonoBehaviour
         hop = _sm._IM.i_8_lancement_bras_cloche;
 
         if (_sm._IM.i_8_lancement_bras_cloche_RESET)
-            ResetPosition();
+            _Reset();
 
         if (other == null)
             return;
@@ -58,12 +58,11 @@ public class _8_bras_cloche : MonoBehaviour
         }
     }
 
-    public void ResetPosition()
+    public void _Reset()
     {
         go = false;
         hopped = false;
-        transform.rotation = Quaternion.Euler(0, 0, 5);
-
+        transform.rotation = rotationInit;
     }
 
     public void _OnTriggerEnter()

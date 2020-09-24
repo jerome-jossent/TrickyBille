@@ -7,30 +7,60 @@ public class Choose_Control_and_Color : MonoBehaviour
 {
     [SerializeField] Toggle x360, touch, souris;
     [SerializeField] Toggle marron, rouge, orange, bleu;
-
+    bool changebycode = false;
     SCRIPTSMANAGER _sm;
     void Awake()
     {
         _sm = GameObject.Find("Scripts Manager").GetComponent<SCRIPTSMANAGER>();
+
+
+        _SetToggleButtonsFromValues();
+        gameObject.SetActive(false);
     }
 
-    public void Start()
+    public void _SetToggleButtonsFromValues()
     {
-        x360.targetGraphic.color = new Color(1, 1, 1, 0.5f);
-        touch.targetGraphic.color = new Color(1, 1, 1, 0.5f);
-        souris.targetGraphic.color = new Color(1, 1, 1, 0.5f);
+        //Debug.Log(_sm._IM._interaction_Type.ToString());
+        changebycode = true;
+        switch (_sm._IM._interaction_Type)
+        {
+            case Interactions_Manager.interaction_type.x360:
+                x360.isOn = true;
+                break;
+            case Interactions_Manager.interaction_type.touchScreen:
+                touch.isOn = true;
+                break;
+            case Interactions_Manager.interaction_type.mouse:
+                souris.isOn = true;
+                break;
+        }
+        _Selection_Controller();
 
-        marron.targetGraphic.color = new Color(1, 1, 1, 0.5f);
-        rouge.targetGraphic.color = new Color(1, 1, 1, 0.5f);
-        orange.targetGraphic.color = new Color(1, 1, 1, 0.5f);
-        bleu.targetGraphic.color = new Color(1, 1, 1, 0.5f);
+        switch (_sm._boardVersion._boardVersion_type)
+        {
+            case _BoardVersion.BoardVersion_type.marron:
+                marron.isOn = true;
+                break;
+            case _BoardVersion.BoardVersion_type.rouge:
+                rouge.isOn = true;
+                break;
+            case _BoardVersion.BoardVersion_type.orange:
+                orange.isOn = true;
+                break;
+            case _BoardVersion.BoardVersion_type.bleu:
+                bleu.isOn = true;
+                break;
+        }
+        _Selection_Color();
+        changebycode = false;
     }
 
     public void _Selection_Controller()
     {
         if (x360.isOn)
         {
-            _sm._IM._interaction_Type = Interactions_Manager.interaction_type.x360;
+            if(!changebycode)
+                _sm._IM._interaction_Type = Interactions_Manager.interaction_type.x360;
             x360.targetGraphic.color = new Color(1, 1, 1, 1);
             touch.targetGraphic.color = new Color(1, 1, 1, 0.5f);
             souris.targetGraphic.color = new Color(1, 1, 1, 0.5f);
@@ -38,7 +68,8 @@ public class Choose_Control_and_Color : MonoBehaviour
         }
         if (touch.isOn)
         {
-            _sm._IM._interaction_Type = Interactions_Manager.interaction_type.touchScreen;
+            if (!changebycode)
+                _sm._IM._interaction_Type = Interactions_Manager.interaction_type.touchScreen;
             x360.targetGraphic.color = new Color(1, 1, 1, 0.5f);
             touch.targetGraphic.color = new Color(1, 1, 1, 1);
             souris.targetGraphic.color = new Color(1, 1, 1, 0.5f);
@@ -46,7 +77,8 @@ public class Choose_Control_and_Color : MonoBehaviour
         }
         if (souris.isOn)
         {
-            _sm._IM._interaction_Type = Interactions_Manager.interaction_type.mouse;
+            if (!changebycode)
+                _sm._IM._interaction_Type = Interactions_Manager.interaction_type.mouse;
             x360.targetGraphic.color = new Color(1, 1, 1, 0.5f);
             touch.targetGraphic.color = new Color(1, 1, 1, 0.5f);
             souris.targetGraphic.color = new Color(1, 1, 1, 1);

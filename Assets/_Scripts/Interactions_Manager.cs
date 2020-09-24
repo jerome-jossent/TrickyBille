@@ -76,8 +76,6 @@ public class Interactions_Manager : MonoBehaviour
                 if (i_8_lancement_bras_cloche_RESET && i_8_lancement_bras_cloche_RESET_precedent)
                     i_8_lancement_bras_cloche_RESET = false;
                 i_8_lancement_bras_cloche_RESET_precedent = i_8_lancement_bras_cloche_RESET;
-
-
                 break;
         }
     }
